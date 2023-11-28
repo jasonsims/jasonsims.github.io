@@ -15,6 +15,11 @@
             background-color: #CEE1FF;
         }
 
+        footer {
+            position: fixed;
+            bottom: 10px;
+        }
+
         .hero-unit {
             margin-bottom: 20px;
         }
@@ -50,6 +55,32 @@
         <button id="button2">Button 2</button>
         <button id="button3">Button 3</button>
     </div>
+    <footer></footer>
+    <script>
+        function handleLogout () {
+            localStorage.removeItem('pendo_visitor-id')
+            localStorage.removeItem('pendo_account-id')
+            localStorage.removeItem('pendo_api-key')
+            window.location.href = '/login.html';
+        }
+
+        function renderFooter () {
+            const footer = document.querySelector('footer')
+
+            footer.innerHTML = `
+                <span class="debug-info">${localStorage.getItem('pendo_visitor-id')}</span>
+                <span class="debug-info">${localStorage.getItem('pendo_account-id')}</span>
+                <span class="debug-info">${localStorage.getItem('pendo_api-key')}</span>
+                <button id="buttonLogout" onclick="handleLogout()">Logout</button>
+            `
+        }
+
+        if (!localStorage.getItem('pendo_visitor-id')) {
+            window.location.href = '/login.html';
+        } else {
+            renderFooter()
+        }
+    </script>
     <script>
         (function(apiKey){
             (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];

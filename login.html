@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyan Cat App</title>
+    <style>
+        body {
+            font-family: 'Brush Script MT';
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #CEE1FF;
+        }
+
+        .hero-unit {
+            margin-bottom: 20px;
+        }
+
+        .nyan-cat-img {
+            width: 400px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .login-form button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-unit">
+        <h1>Nyan doesn't know you 😒</h1>
+        <img src="https://media.giphy.com/media/VGuAZNdkPUpEY/giphy.gif" alt="Nyan Cat" class="nyan-cat-img">
+    </div>
+    <form class="login-form" id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="validateLogin()">Login</button>
+    </form>
+
+    <script>
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+
+            if (username.endsWith('@pendo.io')) {
+                localStorage.setItem('pendo_visitor-id', username)
+                localStorage.setItem('pendo_account-id', 'the-blobs')
+                localStorage.setItem('pendo_api-key', 'e3e596f4-5bfd-442e-58e1-57e50aeaaea5')
+                window.location.href = '/';
+            } else {
+                alert('Invalid username or password. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
