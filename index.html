@@ -61,6 +61,7 @@
             localStorage.removeItem('pendo_visitor-id')
             localStorage.removeItem('pendo_account-id')
             localStorage.removeItem('pendo_api-key')
+            localStorage.removeItem('pendo_env')
             window.location.href = '/login.html';
         }
 
@@ -70,6 +71,7 @@
             footer.innerHTML = `
                 <span class="debug-info">${localStorage.getItem('pendo_visitor-id')}</span>
                 <span class="debug-info">${localStorage.getItem('pendo_account-id')}</span>
+                <span class="debug-info">${localStorage.getItem('pendo_env')}</span>
                 <span class="debug-info">${localStorage.getItem('pendo_api-key')}</span>
                 <button id="buttonLogout" onclick="handleLogout()">Logout</button>
             `
@@ -82,11 +84,11 @@
         }
     </script>
     <script>
-        (function(apiKey){
+        (function(apiKey, env){
             (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
             v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
                 o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-                y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo-dev.pendo-dev.com/agent/static/'+apiKey+'/pendo.js';
+                y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo-'+env+'.pendo-dev.com/agent/static/'+apiKey+'/pendo.js';
                 z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
 
                 // This function creates visitors and accounts in Pendo
@@ -116,7 +118,7 @@
                         // as long as it's not one of the above reserved names.
                     }
                 });
-        })(localStorage.getItem('pendo_api-key'));
+        })(localStorage.getItem('pendo_api-key'), localStorage.getItem('pendo_env'));
     </script>
     <script>
         document.getElementById('button1').addEventListener('click', () => {
