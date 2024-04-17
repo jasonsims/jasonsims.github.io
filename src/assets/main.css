@@ -1,0 +1,13 @@
+@import './reset.css';
+@import './base.css';
+@import './typography.css';
+
+#app {
+  height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+}

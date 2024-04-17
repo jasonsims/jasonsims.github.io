@@ -1,137 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyan Cat App</title>
-    <style>
-        body {
-            font-family: 'Brush Script MT';
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #CEE1FF;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 10px;
-        }
-
-        .hero-unit {
-            margin-bottom: 20px;
-        }
-
-        .nyan-cat-img {
-            width: 400px;
-        }
-
-        .button-group button {
-            margin: 5px;
-            padding: 10px 20px;
-            background-color: #FFA3D1;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            color: #FFF;
-            transition: background-color 0.2s;
-        }
-
-        .button-group button:hover {
-            background-color: #FF5B9D;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyan Cat App</title>
 </head>
+
 <body>
-    <div class="hero-unit">
-        <h1>Trust the Nyan</h1>
-        <img src="https://media.giphy.com/media/VGuAZNdkPUpEY/giphy.gif" alt="Nyan Cat" class="nyan-cat-img">
-    </div>
-    <div class="button-group">
-        <button id="button1">Button 1</button>
-        <button id="button2">Button 2</button>
-        <button id="button3">Button 3</button>
-    </div>
-    <footer></footer>
-    <script>
-        function handleLogout () {
-            localStorage.removeItem('pendo_visitor-id')
-            localStorage.removeItem('pendo_account-id')
-            localStorage.removeItem('pendo_api-key')
-            localStorage.removeItem('pendo_env')
-            window.location.href = '/login.html';
-        }
-
-        function renderFooter () {
-            const footer = document.querySelector('footer')
-
-            footer.innerHTML = `
-                <span class="debug-info">${localStorage.getItem('pendo_visitor-id')}</span>
-                <span class="debug-info">${localStorage.getItem('pendo_account-id')}</span>
-                <span class="debug-info">${localStorage.getItem('pendo_env')}</span>
-                <span class="debug-info">${localStorage.getItem('pendo_api-key')}</span>
-                <button id="buttonLogout" onclick="handleLogout()">Logout</button>
-            `
-        }
-
-        if (!localStorage.getItem('pendo_visitor-id')) {
-            window.location.href = '/login.html';
-        } else {
-            renderFooter()
-        }
-    </script>
-    <script>
-        (function(apiKey, env){
-            (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
-            v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
-                o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-                y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo-'+env+'.pendo-dev.com/agent/static/'+apiKey+'/pendo.js';
-                z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-
-                // This function creates visitors and accounts in Pendo
-                // You will need to replace <visitor-id-goes-here> and <account-id-goes-here> with values you use in your app
-                // Please use Strings, Numbers, or Bools for value types.
-                pendo.initialize({
-                    visitor: {
-                        id: localStorage.getItem('pendo_visitor-id'),
-                        // email:        // Recommended if using Pendo Feedback, or NPS Email
-                        // full_name:    // Recommended if using Pendo Feedback
-                        // role:         // Optional
-
-                        // You can add any additional visitor level key-values here,
-                        // as long as it's not one of the above reserved names.
-                    },
-
-                    account: {
-                        id: localStorage.getItem('pendo_account-id')
-                        // name:         // Optional
-                        // is_paying:    // Recommended if using Pendo Feedback
-                        // monthly_value:// Recommended if using Pendo Feedback
-                        // planLevel:    // Optional
-                        // planPrice:    // Optional
-                        // creationDate: // Optional
-
-                        // You can add any additional account level key-values here,
-                        // as long as it's not one of the above reserved names.
-                    }
-                });
-        })(localStorage.getItem('pendo_api-key'), localStorage.getItem('pendo_env'));
-    </script>
-    <script>
-        document.getElementById('button1').addEventListener('click', () => {
-            alert('Button 1 clicked!');
-        });
-
-        document.getElementById('button2').addEventListener('click', () => {
-            alert('Button 2 clicked!');
-        });
-
-        document.getElementById('button3').addEventListener('click', () => {
-            alert('Button 3 clicked!');
-        });
-    </script>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    (function (apiKey) {
+      (function (p, e, n, d, o) {
+        var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+          o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+        })(v[w]);
+        y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo-perfserf.pendo-dev.com/agent/static/' + apiKey + '/pendo.js';
+        z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+      })(window, document, 'script', 'pendo');
+    })('21fd53da-0d49-49ae-6858-8436f5b1d7a1');
+  </script>
 </body>
+
 </html>

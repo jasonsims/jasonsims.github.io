@@ -1,0 +1,63 @@
+/* Light mode */
+:root {
+  --primary-color: #ff69b4; /* Vivid pink from the cat */
+  --secondary-color: #32cd32; /* Bright green from the fireworks */
+  --background-color: #ffffff; /* Light background for general use */
+  --text-color: #333333; /* Dark grey for text on light background */
+  --accent-color: #1e90ff; /* Bright blue from the sunglasses */
+  --highlight-color: #ffd700; /* Gold from the party hat */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: var(--text-color);
+  background: var(--background-color);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark mode when system preference is dark */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode */
+  :root {
+    --background-color: #121212; /* Dark background #003366 maybe */
+    --text-color: #e0e0e0; /* Light grey for text */
+  }
+}
+
+/* Dark mode when .dark-mode class is active */
+body.dark-mode {
+  --background-color: #121212; /* Dark background */
+  --text-color: #e0e0e0; /* Light grey for text */
+}
